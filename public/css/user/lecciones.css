@@ -1,0 +1,123 @@
+body {
+  background: radial-gradient(circle at top, #1a001f, #000);
+  
+  color: #fff;
+  font-family: 'Public Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.lecciones-section {
+  text-align: center;
+  padding: 4rem 1rem 6rem;
+}
+
+.titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  margin-top: 50px;
+}
+
+.subtitulo {
+  color: #c9a4ff;
+  margin-bottom: 2rem;
+}
+
+.lecciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.leccion-card {
+  background: linear-gradient(145deg, #1a001f, #2b0040);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.leccion-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(120, 0, 255, 0.5);
+}
+
+.leccion-card.completada {
+  border: 2px solid #6a0dad;
+  background: linear-gradient(145deg, #23004a, #14002b5b);
+}
+
+.leccion-icon {
+  background: #6a0dad;
+  border-radius: 50%;
+  padding: 15px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leccion-icon i {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.leccion-info h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.leccion-info p {
+  font-size: 0.95rem;
+  color: #cfcfcf;
+  margin-bottom: 0.5rem;
+}
+
+.nivel {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #c9a4ff;
+}
+
+.btn-comenzar {
+  background: #6a0dad;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.6rem 1.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-weight: 600;
+}
+
+.btn-comenzar:hover {
+  background: #8e24ff;
+}
+
+@media (max-width: 600px) {
+  .titulo {
+    font-size: 1.7rem;
+    margin-top: 10px;
+  }
+
+  .leccion-card {
+    padding: 1rem;
+  }
+
+  .btn-comenzar {
+    width: 100%;
+  }
+}

@@ -2,109 +2,116 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../user/login.php");
-    exit;
+  header("Location: ../user/login.php");
+  exit;
+}
+require_once __DIR__ . '/../config/db.php';
+
+$user_id = $_SESSION['user_id'];
+
+$stmt = $conn->prepare("SELECT nombre, puntos, nivel_actual FROM usuarios WHERE id_usuario = :id");
+$stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+$stmt->execute();
+
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+  session_destroy();
+  header("Location: ../user/login.php");
+  exit;
 }
 
-// Capturamos alerta
+
+// Capturamos alerta  
 $alert = $_SESSION['alert'] ?? null;
 unset($_SESSION['alert']); // Limpiar después de mostrar
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrainPlay</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrainPlay | Inicio</title>
 
-<!-- Fuentes y CDN -->
-<?php include __DIR__ . '/../includes/cdns.php' ?>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../public/css/global.css">
-<link rel="stylesheet" href="../public/css/user/panel.css">
+  <!-- Fuentes y CDN -->
+  <?php include __DIR__ . '/../includes/cdns.php' ?>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../public/css/global.css">
+  <link rel="stylesheet" href="../public/css/user/panel.css">
 
-<style>
-/* Estilo alerta tipo juego */
-.swal-game { 
-    border: 2px solid #a259ff; 
-    box-shadow: 0 0 30px #a259ff80; 
-    border-radius: 20px; 
-    animation: glow 1.5s infinite alternate; 
-}
-@keyframes glow { 
-    from { box-shadow: 0 0 10px #a259ff80; } 
-    to { box-shadow: 0 0 30px #a259ff; } 
-}
-.swal-game-btn { 
-    font-family: 'Orbitron', sans-serif !important; 
-    text-transform: uppercase; 
-    border-radius: 12px !important; 
-    padding: 10px 30px !important; 
-    box-shadow: 0 0 15px #a259ff; 
-    transition: 0.3s ease; 
-    
-}
-.swal-game-btn:hover { 
-    transform: scale(1.05); 
-    box-shadow: 0 0 25px #a259ff; 
-}
-</style>
 </head>
+
 <body>
 
-<?php include __DIR__ . '/../includes/navbar.php'; ?>
+  <?php include __DIR__ . '/../includes/navbar.php'; ?>
 
-<main class="panel-container">
-  <section class="welcome-section">
-    <h1>Bienvenido a <span>BrainPlay</span></h1>
-    <p>Tu centro de entrenamiento en inglés. Elige un modo y comienza a jugar.</p>
-  </section>
+  <main class="panel-container">
 
-  <section class="options-section">
-    <div class="option-card play">
-      <i class="fa-solid fa-rocket"></i>
-      <h2>Jugar</h2>
-      <p>Responde preguntas, gana puntos y sube de nivel.</p>
-    </div>
-    <div class="option-card challenge">
-      <i class="fa-solid fa-stopwatch"></i>
-      <h2>Desafío</h2>
-      <p>Modo contrarreloj para verdaderos maestros del inglés.</p>
-    </div>
-    <div class="option-card ranking">
-      <i class="fa-solid fa-ranking-star"></i>
-      <h2>Ranking</h2>
-      <p>Compite y escala posiciones en la tabla global.</p>
-    </div>
-    <div class="option-card shop">
-      <i class="fa-solid fa-store"></i>
-      <h2>Tienda</h2>
-      <p>Canjea tus puntos por recompensas exclusivas.</p>
-    </div>
-  </section>
-</main>
+    <!-- Bienvenida y estadísticas -->
+    <section class="welcome-section">
+      <h1>Bienvenido, <?= htmlspecialchars($user['nombre']) ?>!</h1>
+      <p>Nivel <?= $user['nivel_actual'] ?> | Puntos: <?= $user['puntos'] ?></p>
+      <p>Tu centro de entrenamiento en inglés. Elige un modo y comienza a jugar.</p>
+    </section>
 
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+    <!-- Opciones / Cards -->
+    <section class="options-section">
+      <div class="option-card play" onclick="location.href='lecciones.php'">
+        <i class="fa-solid fa-rocket"></i>
+        <h2>Jugar</h2>
+        <p>Responde preguntas, gana puntos y sube de nivel.</p>
+      </div>
+      <div class="option-card challenge" onclick="location.href='challenge.php'">
+        <i class="fa-solid fa-stopwatch"></i>
+        <h2>Desafío</h2>
+        <p>Modo contrarreloj para verdaderos maestros del inglés.</p>
+      </div>
+      <div class="option-card ranking" onclick="location.href='ranking.php'">
+        <i class="fa-solid fa-ranking-star"></i>
+        <h2>Ranking</h2>
+        <p>Compite y escala posiciones en la tabla global.</p>
+      </div>
+      <div class="option-card shop" onclick="location.href='shop.php'">
+        <i class="fa-solid fa-store"></i>
+        <h2>Tienda</h2>
+        <p>Canjea tus puntos por recompensas exclusivas.</p>
+      </div>
+    </section>
 
-<?php if ($alert): ?>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  Swal.fire({
-    title: 'LEVEL UP! 🚀',
-    html: `<div style="font-family: 'Orbitron', sans-serif; color:#fff; font-size:1.2rem; letter-spacing:1px;"><?= $alert['mensaje'] ?></div>`,
-    background: 'radial-gradient(circle at center, #2b0056 0%, #0e001a 100%)',
-    icon: '<?= $alert['tipo'] ?>',
-    iconColor: '<?= $alert['tipo'] === "success" ? "#a259ff" : "#ff4f4f" ?>',
-    showConfirmButton: true,
-    confirmButtonText: 'Continuar',
-    confirmButtonColor: '#a259ff',
-    customClass: { popup: 'swal-game', confirmButton: 'swal-game-btn' },
-  });
-}); 
-</script>
-<?php endif; ?>
+  </main>
 
+  <?php include __DIR__ . '/../includes/footer.php'; ?>
+
+  <?php if ($alert): ?>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        Swal.fire({
+          title: '¡Welcome!',
+          titleColor: '#fff',
+          html: `<div style="font-family: 'Orbitron', sans-serif; color:#fff; font-size:1.2rem; letter-spacing:1px;">
+            <?= htmlspecialchars($alert['mensaje'], ENT_QUOTES) ?>
+           </div>`,
+          background: 'radial-gradient(circle at center, #2b0056 0%, #0e001a 100%)',
+          icon: '<?= $alert['tipo'] ?>',
+          iconColor: '<?= $alert['tipo'] === "success" ? "#a259ff" : "#ff4f4f" ?>',
+          showConfirmButton: true,
+          confirmButtonText: 'Continuar',
+          confirmButtonColor: '#a259ff',
+          customClass: {
+            popup: 'swal-game',
+            confirmButton: 'swal-game-btn'
+          },
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload(); // O redirigir a otra página si quieres
+          }
+        });
+      });
+    </script>
+  <?php endif; ?>
 
 </body>
+
 </html>

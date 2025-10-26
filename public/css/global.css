@@ -1,12 +1,12 @@
-
-  
 .swal2-popup.swal-game {
   border: 2px solid #a259ff;
   box-shadow: 0 0 25px #a259ff;
   border-radius: 15px;
   animation: popupGlow 0.8s ease-in-out;
 }
-
+#swal2-title{
+  color: white !important;
+}
 @keyframes popupGlow {
   0% {
     transform: scale(0.8);

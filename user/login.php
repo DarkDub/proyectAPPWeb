@@ -1,13 +1,12 @@
 <?php
 session_start();
 
-// if (!isset($_SESSION['user_id'])){
-//      header("Location: ../user/login.php");
-//     exit;
-// } else {
-//      header("Location: ../user/welcome.php");
-//     exit;
-// }
+// Si ya está logueado, redirigir a welcome
+if (isset($_SESSION['user_id'])){
+    header("Location: welcome.php");
+    exit;
+}
+
 
 include __DIR__ . '/../config/db.php';
 
@@ -30,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $_SESSION['alert'] = [
                 'tipo' => 'success',
-                'mensaje' => "¡Bienvenido de nuevo, {$user['nombre']}! 🎮"
+                'mensaje' => "¡Bienvenido de nuevo, {$user['nombre']}!"
             ];
 
             header("Location: ../user/welcome.php");

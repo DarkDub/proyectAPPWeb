@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LexiQuest</title> <!-- Nombre estilo “game” -->
+  <title>BrainPlay</title> <!-- Nombre estilo “game” -->
   <link rel="stylesheet" href="public/css/index.css">
   <?php include 'includes/cdns.php'; ?>
 </head>
@@ -17,7 +17,7 @@
   </div>
 
   <div style="z-index: 2; text-align:center;">
-    <div class="logo">LexiQuest</div>
+    <div class="logo">BrainPlay</div>
     <h2 class="subtitle">Aprende inglés jugando</h2>
 
     <a href="user/login.php" class="btn-play">Jugar ahora</a>

@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+// Si ya está logueado, redirigir a welcome
+if (isset($_SESSION['user_id'])){
+    header("Location: welcome.php");
+    exit;
+}
+
+
 include __DIR__ . '/../config/db.php';
 
 $mensaje = '';

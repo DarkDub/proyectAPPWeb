@@ -13,8 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <!-- Tu propio CSS global -->
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="../public/css/nav.css">
 
 <!-- Tu propio JS global -->
-<script defer src="assets/js/app.js"></script>
 <script  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
