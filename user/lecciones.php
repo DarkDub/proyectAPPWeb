@@ -53,7 +53,7 @@ $progreso = $stmt2->fetchAll(PDO::FETCH_KEY_PAIR); // [id_leccion => completado]
           </div>
           <button 
             class="btn-comenzar" 
-            onclick="window.location.href='leccion.php?id=<?= $id ?>'">
+            onclick="window.location.href='leccionTeoria.php?id=<?= $id ?>'">
             <?= $completada ? 'Repetir' : 'Comenzar' ?>
           </button>
         </div>
