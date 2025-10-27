@@ -29,6 +29,16 @@ $progreso = $stmt2->fetchAll(PDO::FETCH_KEY_PAIR); // [id_leccion => completado]
   <?php include __DIR__ . '/../includes/cdns.php'; ?>
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../public/css/user/lecciones.css">
+  <style>
+    .lecciones-section h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #a259ff;
+        }
+        .lecciones-section p {
+            color: #fafafaff;
+        }
+  </style>
 </head>
 <body>
 

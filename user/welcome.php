@@ -63,10 +63,10 @@ unset($_SESSION['alert']); // Limpiar después de mostrar
         <h2>Jugar</h2>
         <p>Responde preguntas, gana puntos y sube de nivel.</p>
       </div>
-      <div class="option-card challenge" onclick="location.href='challenge.php'">
+      <div class="option-card challenge" onclick="location.href='misiones.php'">
         <i class="fa-solid fa-stopwatch"></i>
-        <h2>Desafío</h2>
-        <p>Modo contrarreloj para verdaderos maestros del inglés.</p>
+        <h2>Misiones Diarias</h2>
+        <p>Modo Mision para verdaderos maestros del inglés.</p>
       </div>
       <div class="option-card ranking" onclick="location.href='ranking.php'">
         <i class="fa-solid fa-ranking-star"></i>

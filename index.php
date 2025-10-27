@@ -23,6 +23,6 @@
     <a href="user/login.php" class="btn-play">Jugar ahora</a>
   </div>
 
-  <div class="footer">© 2025 LexiQuest - Proyecto educativo</div>
+  <div class="footer">© 2025 BrainPlay - Proyecto educativo</div>
 </body>
 </html>

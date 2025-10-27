@@ -31,6 +31,7 @@ $total_preguntas = count($preguntas);
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,8 +39,48 @@ $total_preguntas = count($preguntas);
     <?php include __DIR__ . '/../includes/cdns.php'; ?>
     <link rel="stylesheet" href="../public/css/user/leccion.css">
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        .swal-game1 {
+            border: 2px solid #a259ff;
+            box-shadow: 0 0 30px #a259ff80;
+            border-radius: 20px;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px #a259ff80;
+            }
+
+            to {
+                box-shadow: 0 0 30px #a259ff;
+            }
+        }
+
+        .swal-game-btn {
+            font-family: 'Orbitron', sans-serif !important;
+            text-transform: uppercase;
+            border-radius: 12px !important;
+            padding: 10px 30px !important;
+            box-shadow: 0 0 15px #a259ff;
+            transition: 0.3s ease;
+        }
+        #swal2-title {
+            color: white !important;
+        }
+        .swal-game-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #a259ff;
+        }
+
+        .leccion-title{
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #a259ff;
+        }
+    </style>
 </head>
+
 <body>
     <?php include __DIR__ . '/../includes/navbar.php'; ?>
 
@@ -114,36 +155,61 @@ $total_preguntas = count($preguntas);
                         } else {
                             // Fin de la lección: enviar datos al backend
                             fetch('Game/leccionUpload.php', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    user_id: <?= $user_id ?>,
-                                    id_leccion: <?= $id_leccion ?>,
-                                    puntos_ganados: score,
-                                    palabras: palabrasAprendidas
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        user_id: <?= $user_id ?>,
+                                        id_leccion: <?= $id_leccion ?>,
+                                        puntos_ganados: score,
+                                        palabras: palabrasAprendidas
+                                    })
                                 })
-                            })
-                            .then(res => res.json())
-                            .then(data => {
-                                if(data.success){
-                                    userPointsSpan.textContent = data.nuevo_puntaje;
-                                }
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        userPointsSpan.textContent = data.nuevo_puntaje;
+                                    }
 
-                                Swal.fire({
-                                    title: `¡Felicidades!`,
-                                    html: `<p>Terminaste la lección 🎉</p>
-                                           <p>Puntos ganados: ${score}</p>
-                                           <p>Palabras aprendidas: ${palabrasAprendidas.length}</p>`,
-                                    icon: 'success',
-                                    confirmButtonText: 'Continuar',
-                                    background: 'radial-gradient(circle at center, #2b0056 0%, #0e001a 100%)',
-                                    showClass: { popup: 'animate__animated animate__fadeInDown' },
-                                    hideClass: { popup: 'animate__animated animate__fadeOutUp' }
-                                }).then(() => {
-                                    window.location.href = "profile.php";
-                                });
-                            })
-                            .catch(err => console.error(err));
+                                    Swal.fire({
+                                        title: '¡Felicidades!',
+                                        titleColor: '#fff',
+
+                                        html: `
+        <div style="font-family: 'Orbitron', sans-serif; color:#fff; font-size:1.2rem; letter-spacing:1px;">
+            <p>Terminaste la lección 🎉</p>
+            <p>Puntos ganados: ${score}</p>
+            <p>Palabras aprendidas: ${palabrasAprendidas.length}</p>
+        </div>
+    `,
+                                        icon: 'success',
+                                        iconColor: '#a259ff', // Color personalizado para success
+                                        background: 'radial-gradient(circle at center, #2b0056 0%, #0e001a 100%)',
+                                        showConfirmButton: true,
+                                        confirmButtonText: 'Continuar',
+                                        confirmButtonColor: '#a259ff',
+                                        customClass: {
+                                            popup: 'swal-game1',
+                                            confirmButton: 'swal-game-btn'
+                                        },
+                                        showClass: {
+                                            popup: 'animate__animated animate__fadeInDown'
+                                        },
+                                        hideClass: {
+                                            popup: 'animate__animated animate__fadeOutUp'
+                                        }
+                                    }).then(() => {
+                                        window.location.href = "lecciones.php";
+                                    });
+
+
+
+
+
+
+                                })
+                                .catch(err => console.error(err));
                         }
                     }, 800);
                 });
@@ -153,4 +219,5 @@ $total_preguntas = count($preguntas);
         showCard(0);
     </script>
 </body>
+
 </html>

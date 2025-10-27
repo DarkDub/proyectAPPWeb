@@ -1,0 +1,178 @@
+/* shop.css */
+body {
+    font-family: 'Public Sans', sans-serif;
+    background-color: #0e001a;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.shop-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header tipo hero */
+.shop-header {
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.shop-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.shop-header p {
+    font-size: 1.2rem;
+}
+
+/* Categorías */
+.shop-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.category-card {
+    background: linear-gradient(135deg, #6b00ff, #a259ff);
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 120px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.category-card i {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.category-card span {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Recompensas */
+.shop-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.reward-card {
+    background: linear-gradient(145deg, #1a001f, #2b0056);
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.reward-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+}
+
+.reward-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reward-header i {
+    font-size: 1.5rem;
+    color: #a259ff;
+}
+
+.reward-category {
+    font-size: 0.85rem;
+    background: rgba(255,255,255,0.1);
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.reward-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.reward-desc {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    min-height: 40px;
+}
+
+.reward-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reward-points {
+    background: rgba(255,255,255,0.1);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-redeem {
+    background: #a259ff;
+    border: none;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-redeem:hover {
+    background: #7a00ff;
+    transform: translateY(-2px);
+}
+
+.btn-disabled {
+    background: rgba(255,255,255,0.2);
+    color: #aaa;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .shop-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .shop-header p {
+        font-size: 1rem;
+    }
+
+    .category-card {
+        width: 100px;
+        padding: 15px 20px;
+    }
+}

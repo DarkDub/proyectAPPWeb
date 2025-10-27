@@ -11,7 +11,7 @@ require_once __DIR__ . '/../config/db.php';
 $user_id = $_SESSION['user_id'];
 
 // Obtener datos del usuario
-$stmt = $conn->prepare("SELECT nombre, email, puntos, nivel_actual, palabras_aprendidas, lecciones_completadas, retos_completados FROM usuarios WHERE id_usuario = :id");
+$stmt = $conn->prepare("SELECT * FROM usuarios WHERE id_usuario = :id");
 $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -43,6 +43,7 @@ $lecciones->bindParam(':id', $user_id, PDO::PARAM_INT);
 $lecciones->execute();
 $leccionesAprendidas = $lecciones->fetchAll(PDO::FETCH_COLUMN);
 $user['lecciones_completadas'] = count($leccionesAprendidas);
+
 
 
 // $lecciones = $conn->prepare("
@@ -95,18 +96,26 @@ unset($_SESSION['alert']);
                 <p><i class="fas fa-star"></i> Puntos: <?= htmlspecialchars($user['puntos']) ?></p>
                 <p><i class="fas fa-layer-group"></i> Nivel: <?= htmlspecialchars($user['nivel_actual']) ?></p>
             </div>
+            <?php
+            $nivel = $user['nivel_actual_gramatica'];
+            $puntos = $user['puntos'];
+            $metas = ['A1' => 1000, 'A2' => 3000, 'B1' => 6000, 'B2' => 10000, 'C1' => 15000, 'C2' => 20000];
+            $meta = $metas[$nivel];
+            $porcentaje = min(($puntos / $meta) * 100, 100);
+            ?>
             <div class="profile-actions">
-                <!-- Barra de progreso -->
                 <div class="level-progress">
-                    <p>Progreso al siguiente nivel</p>
+                    <p>Progreso al siguiente nivel (<?= $nivel ?>)</p>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: <?= min($user['puntos'], 100) ?>%;"></div>
+                        <div class="progress-fill" style="width: <?= $porcentaje ?>%;"></div>
                     </div>
+                    <small><?= $puntos ?>/<?= $meta ?> puntos</small>
                 </div>
                 <form action="logout.php" method="post">
                     <button type="submit" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
                 </form>
             </div>
+
         </div>
 
 
@@ -219,7 +228,7 @@ unset($_SESSION['alert']);
         palabrasCard.addEventListener('click', () => {
             palabrasModal.show();
         });
-         leccionCard.addEventListener('click', () => {
+        leccionCard.addEventListener('click', () => {
             leccionModal.show();
         });
     </script>

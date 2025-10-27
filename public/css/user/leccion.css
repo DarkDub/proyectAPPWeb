@@ -104,3 +104,13 @@ body {
     border-radius: 15px;
     transition: width 0.3s ease;
 }
+
+
+
+@media (max-width: 600px) {
+   .leccion-container{
+        margin: 130px 0px 150px 0px;
+    }
+
+ 
+}
