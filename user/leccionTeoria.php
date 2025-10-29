@@ -231,9 +231,16 @@ if (!$leccion) {
 
     <!-- Continuar -->
     <div class="continue-section">
-      <a href="<?= htmlspecialchars($leccion['ejercicio_recomendado'] ?? 'leccion.php?id=' . $id_leccion) ?>" class="btn-next">
-        ¡Estoy listo para practicar! 🚀
-      </a>
+      <?php if (!empty($leccion['ejercicio_recomendado'])): ?>
+  <a href="leccion.php?id=<?= htmlspecialchars($leccion['ejercicio_recomendado']) ?>" class="btn-next">
+    ¡Estoy listo para practicar! 🚀
+  </a>
+<?php else: ?>
+  <button class="btn-next" disabled style="opacity: 0.6; cursor: not-allowed;">
+    No hay ejercicio recomendado ❌
+  </button>
+<?php endif; ?>
+
     </div>
 
   </section>

@@ -1,0 +1,171 @@
+ 
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at center, #2b0056 0%, #0e001a 100%);
+            color: #eae0ff;
+            display: flex;
+        }
+
+        main {
+            margin-left: 240px;
+            padding: 30px;
+            width: calc(100% - 240px);
+            min-height: 100vh;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #c89cff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px rgba(200, 156, 255, 0.6);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(6px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #eae0ff;
+        }
+
+        thead {
+            background: rgba(159, 98, 255, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.95rem;
+        }
+
+        th {
+            color: #c89cff;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            color: #fff;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-edit {
+            background: #38b000;
+        }
+
+        .btn-edit:hover {
+            background: #2d8a00;
+        }
+
+        .btn-delete {
+            background: #e63946;
+        }
+
+        .btn-delete:hover {
+            background: #b91c1c;
+        }
+
+        .btn-view {
+            background: #3a0ca3;
+        }
+
+        .btn-view:hover {
+            background: #2a0087;
+        }
+
+        .modal-content {
+            background: #2b0056;
+            color: #fff;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-control,
+        .form-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px #9f62ff;
+        }
+
+        .form-control,
+        .form-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #9f62ff;
+            box-shadow: 0 0 0 2px #9f62ff;
+            color: #fff;
+        }
+
+        /* ✅ Personalización visual de las opciones */
+        .form-select option {
+            background: #1a0033;
+            /* Fondo oscuro visible */
+            color: #fff;
+            /* Texto claro */
+            padding: 8px;
+        }
+
+        /* ✅ Indicador de flecha más visible */
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%23c89cff' viewBox='0 0 16 16'><path d='M1.5 5.5l6 6 6-6H1.5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 14px;
+            padding-right: 35px;
+        }
+    

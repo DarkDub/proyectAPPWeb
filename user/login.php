@@ -1,14 +1,18 @@
 <?php
 session_start();
 
-// Si ya está logueado, redirigir a welcome
-if (isset($_SESSION['user_id'])){
-    header("Location: welcome.php");
-    exit;
+// Si ya está logueado, redirigir según el rol
+if (isset($_SESSION['user_id']) && isset($_SESSION['rol'])) {
+    if ($_SESSION['rol'] === 'admin') {
+        header("Location: ../admin/index.php");
+        exit;
+    } else {
+        header("Location: ../user/welcome.php");
+        exit;
+    }
 }
 
-
-include __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../config/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
@@ -23,21 +27,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($user && password_verify($password, $user['password'])) {
             // Login exitoso
-            $_SESSION['user_id'] = $user['id_usuario']; // <-- aquí estaba el error
+            $_SESSION['user_id'] = $user['id_usuario'];
             $_SESSION['user_name'] = $user['nombre'];
             $_SESSION['user_email'] = $user['email'];
+            $_SESSION['rol'] = $user['rol']; // 🔥 Guardamos el rol
 
             $_SESSION['alert'] = [
                 'tipo' => 'success',
                 'mensaje' => "¡Bienvenido de nuevo, {$user['nombre']}!"
             ];
 
-            header("Location: ../user/welcome.php");
+            // Redirección según el rol
+            if ($user['rol'] === 'admin') {
+                header("Location: ../admin/index.php");
+            } else {
+                header("Location: ../user/welcome.php");
+            }
             exit;
         } else {
             $_SESSION['alert'] = [
                 'tipo' => 'error',
-                'mensaje' => "Email o contraseña incorrectos "
+                'mensaje' => "Email o contraseña incorrectos"
             ];
             header("Location: login.php");
             exit;
@@ -45,15 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
         $_SESSION['alert'] = [
             'tipo' => 'error',
-            'mensaje' => "Error en la base de datos "
+            'mensaje' => "Error en la base de datos"
         ];
         header("Location: login.php");
         exit;
     }
 }
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -134,17 +141,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php
     $alert = $_SESSION['alert'] ?? null;
-    unset($_SESSION['alert']); // Limpiar alerta después de mostrar
+    unset($_SESSION['alert']);
     ?>
 
     <?php if ($alert): ?>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 Swal.fire({
-                    title: '<?= $alert['tipo'] === "success" ? "LEVEL UP! 🚀" : "ERROR " ?>',
-                    html: `<div style="font-family: 'Orbitron', sans-serif; color: #fff; font-size:1.2rem; letter-spacing:1px;">
+                    title: '<?= $alert['tipo'] === "success" ? "LEVEL UP! 🚀" : "ERROR" ?>',
+                    html: `
+      <div style="font-family: 'Orbitron', sans-serif; color: #fff; font-size:1.2rem; text-align:center;">
         <?= $alert['mensaje'] ?>
-    </div>`,
+      </div>`,
                     background: 'radial-gradient(circle at center, #2b0056 0%, #0e001a 100%)',
                     color: '#fff',
                     icon: '<?= $alert['tipo'] ?>',
@@ -159,18 +167,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         <?php if ($alert['tipo'] === 'success'): ?>
-                            window.location.href = "welcome.php"; // o welcome.php
+                            // Redirigir según el rol
+                            <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+                                window.location.href = "../admin/dashboard.php";
+                            <?php else: ?>
+                                window.location.href = "../user/welcome.php";
+                            <?php endif; ?>
                         <?php else: ?>
-                            window.location.href = "login.php"; // o welcome.php
-
+                            window.location.href = "login.php";
                         <?php endif; ?>
                     }
                 });
-
             });
         </script>
     <?php endif; ?>
-
 </body>
-
 </html>
