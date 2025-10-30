@@ -42,7 +42,12 @@ $lista_lecciones = $stmt2->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="public/css/lecciones.css">
-
+     <link rel="icon" type="image/x-icon" href="../public/uploads/icon-page.png">
+    <style>
+         .form-control::placeholder {
+            color: #e1e1e168;
+        }
+    </style>
 </head>
 
 <body>
@@ -193,12 +198,12 @@ $lista_lecciones = $stmt2->fetchAll(PDO::FETCH_ASSOC);
                     <form id="formCrearLeccion" class="p-3">
                         <div class="mb-3">
                             <label for="titulo" class="form-label text-light">Título</label>
-                            <input type="text" class="form-control" id="nuevaLeccionTitulo" name="titulo" required>
+                            <input type="text" class="form-control" id="nuevaLeccionTitulo" placeholder="Lección 10: Verbos de acción	" name="titulo" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="descripcion" class="form-label text-light">Descripción</label>
-                            <textarea class="form-control" id="nuevaLeccionDescripcion" name="descripcion" rows="3" required></textarea>
+                            <textarea class="form-control" id="nuevaLeccionDescripcion" placeholder="Aprende a saludar y presentarte en inglés." name="descripcion" rows="3" required></textarea>
                         </div>
 
 
@@ -235,17 +240,17 @@ $lista_lecciones = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="mb-3">
                             <label class="form-label">Título</label>
-                            <input type="text" class="form-control" id="teoriaTitulo" required>
+                            <input type="text" class="form-control" placeholder="Verbos de acción	" id="teoriaTitulo" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Contenido</label>
-                            <textarea class="form-control" id="teoriaContenido" rows="4" required></textarea>
+                            <textarea class="form-control" id="teoriaContenido" placeholder="Los verbos de acción describen lo que hacemos. Son esencial...	" rows="4" required></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Ejemplo</label>
-                            <input type="text" class="form-control" id="teoriaEjemplo">
+                            <input type="text" class="form-control" placeholder="He runs fast. / They dance well."    id="teoriaEjemplo">
                         </div>
 
                         <div class="mb-3">

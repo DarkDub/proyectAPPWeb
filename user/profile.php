@@ -88,7 +88,7 @@ unset($_SESSION['alert']);
         <!-- Perfil del usuario -->
         <div class="profile-card">
             <div class="profile-avatar">
-                <img src="../public/img/perfil.jpg" alt="Avatar Usuario">
+                <img src="../public/img/default.png" alt="Avatar Usuario">
             </div>
             <div class="profile-details">
                 <h1><?= htmlspecialchars($user['nombre']) ?></h1>

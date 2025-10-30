@@ -21,6 +21,12 @@ $archivo_actual = basename($_SERVER['PHP_SELF']);
       </a>
     </li>
     <li><a href="misiones.php" class="<?= ($archivo_actual == 'misiones.php') ? 'active' : '' ?>"><i class='bx bx-target-lock'></i> Misiones</a></li>
+    <li>
+  <a href="shop.php" class="<?= ($archivo_actual == 'shop.php') ? 'active' : '' ?>">
+    <i class='bx bx-store'></i> Tienda
+  </a>
+</li>
+
     <li><a href="ranking.php" class="<?= ($archivo_actual == 'ranking.php') ? 'active' : '' ?>"><i class='bx bx-trophy'></i> Ranking</a></li>
 
 
@@ -48,7 +54,7 @@ $archivo_actual = basename($_SERVER['PHP_SELF']);
     background: linear-gradient(90deg, rgba(255, 0, 100, 0.08), rgba(159, 98, 255, 0.04));
     color: #ffdede;
     border: 1px solid rgba(255, 255, 255, 0.03);
-    margin-top: 250px;
+    margin-top: 170px;
   }
 
   .sidebar .nav-links a#btnLogout i {

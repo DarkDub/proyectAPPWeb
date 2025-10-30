@@ -14,6 +14,9 @@
 
 <!-- Tu propio CSS global -->
 <link rel="stylesheet" href="../public/css/nav.css">
+     <link rel="icon" type="image/x-icon" href="../public/uploads/icon-page.png">
+
+
 
 <!-- Tu propio JS global -->
 <script  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

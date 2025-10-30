@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <!-- Animaciones (opcional, para suavizar interacciones) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+     <link rel="icon" type="image/x-icon" href="../public/uploads/icon-page.png">
 
 <!-- Tu propio CSS global -->
 <link rel="stylesheet" href="../public/css/nav.css">

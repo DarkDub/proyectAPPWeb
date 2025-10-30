@@ -150,6 +150,58 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 0 0 2px #9f62ff;
         }
+        .form-control,
+        .form-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px #9f62ff;
+        }
+
+        .form-control,
+        .form-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #9f62ff;
+            box-shadow: 0 0 0 2px #9f62ff;
+            color: #fff;
+        }
+
+        /* ✅ Personalización visual de las opciones */
+        .form-select option {
+            background: #1a0033;
+            /* Fondo oscuro visible */
+            color: #fff;
+            /* Texto claro */
+            padding: 8px;
+        }
+
+        /* ✅ Indicador de flecha más visible */
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%23c89cff' viewBox='0 0 16 16'><path d='M1.5 5.5l6 6 6-6H1.5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 14px;
+            padding-right: 35px;
+        }
     </style>
 </head>
 
@@ -260,6 +312,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div>
+    <script src="public/js/swal.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -308,19 +361,22 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 .then(data => {
                     if (data.status === 'success') {
                         Swal.fire({
+                            title: 'Editado con exito',
+                            text: 'editaste correctamente al usuario.',
                             icon: 'success',
-                            title: 'Éxito',
-                            text: data.message,
-                            confirmButtonColor: '#9f62ff'
+                            confirmButtonColor: '#a259ff',
+                            confirmButtonText: 'aceptar',
+                            background: 'radial-gradient(circle at center, #2b0056 0%, #0e001a 100%)',
+                            color: '#fff',
                         }).then(() => location.reload());
                     } else {
-                        Swal.fire('Error', data.message, 'error');
+                        SwalGame('Error', data.message, 'error');
                     }
                 })
                 .catch(() => Swal.fire('Error', 'Ocurrió un error al procesar la solicitud', 'error'));
         });
 
-        
+
 
         function eliminarUsuario(btn) {
             const id = btn.dataset.id;
@@ -369,7 +425,6 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="public/js/swal.js"></script>
 
 </body>
 

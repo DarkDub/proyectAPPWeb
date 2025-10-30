@@ -14,6 +14,7 @@ function SwalGame({ title, html, icon = 'success', confirmText = 'Aceptar', redi
     showConfirmButton: true,
     confirmButtonText: confirmText,
     confirmButtonColor: '#a259ff',
+    confirmButtonColor: '#a259ff',
     customClass: {
       popup: 'swal-game1',
       confirmButton: 'swal-game-btn'
