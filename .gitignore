@@ -1,2 +1,3 @@
 config/db.php
 .env
+config/english_game_db.sql
