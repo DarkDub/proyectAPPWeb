@@ -24,8 +24,11 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="UTF-8">
   <title>Ranking - BrainPlay</title>
-  <?php include __DIR__ . '/../includes/cdns.php'; ?>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <?php include __DIR__ . '/../includes/cdns.php'; ?>
+
   <style>
     body {
       background: radial-gradient(circle at top, #1a001f, #000);

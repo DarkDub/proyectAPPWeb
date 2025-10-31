@@ -213,7 +213,7 @@ $lista_lecciones = $conn->query("SELECT id_leccion, titulo FROM lecciones ORDER 
             color: #fff;
         }
 
-        /* ✅ Personalización visual de las opciones */
+        /* Personalización visual de las opciones */
         .form-select option {
             background: #1a0033;
             /* Fondo oscuro visible */
@@ -222,7 +222,7 @@ $lista_lecciones = $conn->query("SELECT id_leccion, titulo FROM lecciones ORDER 
             padding: 8px;
         }
 
-        /* ✅ Indicador de flecha más visible */
+        /* Indicador de flecha más visible */
         .form-select {
             appearance: none;
             -webkit-appearance: none;

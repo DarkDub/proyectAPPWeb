@@ -27,10 +27,9 @@ $archivo_actual = basename($_SERVER['PHP_SELF']);
   </a>
 </li>
 
-    <li><a href="ranking.php" class="<?= ($archivo_actual == 'ranking.php') ? 'active' : '' ?>"><i class='bx bx-trophy'></i> Ranking</a></li>
 
 
-    <li><a href="ajustes.php" class="<?= ($archivo_actual == 'ajustes.php') ? 'active' : '' ?>"><i class='bx bx-cog'></i> Ajustes</a></li>
+    <li><a href="#" class="<?= ($archivo_actual == 'ajustes.php') ? 'active' : '' ?>"><i class='bx bx-cog'></i> Ajustes</a></li>
 
     <!-- BOTÓN CERRAR SESIÓN (arriba del footer) -->
     <li style="margin-top: 1.6rem;">

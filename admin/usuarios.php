@@ -182,7 +182,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             color: #fff;
         }
 
-        /* ✅ Personalización visual de las opciones */
+        /*  Personalización visual de las opciones */
         .form-select option {
             background: #1a0033;
             /* Fondo oscuro visible */
@@ -191,7 +191,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             padding: 8px;
         }
 
-        /* ✅ Indicador de flecha más visible */
+        /*  Indicador de flecha más visible */
         .form-select {
             appearance: none;
             -webkit-appearance: none;
@@ -361,13 +361,13 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 .then(data => {
                     if (data.status === 'success') {
                         Swal.fire({
-                            title: 'Editado con exito',
-                            text: 'editaste correctamente al usuario.',
-                            icon: 'success',
-                            confirmButtonColor: '#a259ff',
-                            confirmButtonText: 'aceptar',
-                            background: 'radial-gradient(circle at center, #2b0056 0%, #0e001a 100%)',
-                            color: '#fff',
+                                title: 'Editado con exito',
+                                text: 'editaste correctamente al usuario.',
+                                icon: 'success',
+                                confirmButtonColor: '#a259ff',
+                                confirmButtonText: 'aceptar',
+                                background: 'radial-gradient(circle at center, #2b0056 0%, #0e001a 100%)',
+                                color: '#fff',
                         }).then(() => location.reload());
                     } else {
                         SwalGame('Error', data.message, 'error');
